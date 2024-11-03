@@ -1,0 +1,115 @@
+<!--Website with navigation bar, and navigation between various pages using vue.js-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursework 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <style>
+        body{
+            background-color: #d8e9fc;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #d0cd92;
+            padding: 10px 20px;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            margin: 0 10px;
+            color: #000000;
+            font-weight: bold;
+            font-size: large;
+        }
+
+        .cart-button {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-button span {
+            margin-right: 10px;
+        }
+
+        .cart-button button {
+            background-color: #b6b3b4;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-button button img {
+            width: 20px; /* Set the size of the image */
+            margin-right: 10px; /* Space between the image and text */
+        }
+    </style>
+</head>
+<body>
+    <div id="tuition">
+        <!--List of all section on the nav bar-->
+        <div class="navbar">
+            <div class="navbar-links">
+                <a href="#" v-on:click="setActive('Home')" v-bind:style="activeNav === 'Home' ? activeStyle : inactiveStyle">Home</a>
+                <a href="#" v-on:click="setActive('Product')" v-bind:style="activeNav === 'Product' ? activeStyle : inactiveStyle">Product</a>
+                <a href="#" v-on:click="setActive('Profile')" v-bind:style="activeNav === 'Profile' ? activeStyle : inactiveStyle">Profile</a>
+            </div>
+            <div class="cart-button"><button><img src="cartIcon.png">Cart</button></div>
+        </div>
+        
+        <!--Using v-if to navigate between various webpages-->
+
+        <!-- Content for Home page -->
+        <div v-if="activeNav === 'Home'">
+            <h1>Book An Afterschool Class</h1>
+            <h5>explore our amazing courses at a cheap price</h5>
+        </div>
+
+        <!-- Content for Product page -->
+        <div v-if="activeNav === 'Product'">
+            <h1>{{message1}}</h1>
+        </div>
+
+        <!-- Content for Profile page -->
+        <div v-if="activeNav === 'Profile'">
+            <h1>User Profile</h1>
+            <p>Manage your account and settings here.</p>
+        </div>
+
+
+
+    </div>
+
+    <Script>
+        let tuition = new Vue({
+            el:'#tuition',
+            data: {
+                activeNav: 'Home',
+                message1: 'Our Courses',
+                activeStyle:{
+                    color: '#b6b3b4',
+                    fontWeight: 'bold'
+                },
+                inactiveStyle:{
+                    color: '#000000',
+                    fontWeight: 'normal'
+                },
+            },
+            methods: {
+                setActive(navItem) {
+                    this.activeNav = navItem;
+                }
+            }
+        });
+    </Script>
+</body>
+</html>
